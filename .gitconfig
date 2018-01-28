@@ -1,0 +1,65 @@
+[user]
+	name = Ben Hyrman
+	email = ben.hyrman@gmail.com
+[core]
+	autocrlf = true
+	editor = vim
+	excludesfile = C:\\Users\\Ben\\Documents\\.gitignore_global
+[credential]
+	helper = manager
+[merge]
+	keepBackup = false
+	tool = p4merge
+	defaultToUpstream = true
+[mergetool "p4merge"]
+	cmd = p4merge.exe "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+	keepTemporaries = false
+	trustExitCode = true
+	keepBackup = false
+[diff]
+	tool = p4merge
+[difftool "p4merge"]
+	cmd = "p4merge.exe $LOCAL $REMOTE"
+[push]
+	default = current
+[pull]
+    rebase = true
+[branch]
+	autosetupmerge = true
+	autosetuprebase = always
+[alias]
+	st = status
+	sp = push --force-with-lease
+	ca = !git add -A && git commit -m
+	br = branch
+	up = "!f() { git co develop; git fetch upstream; git rebase upstream/develop; }; f"
+	fuckit = !git clean -dxf && git reset --hard
+	co = checkout
+	df = diff
+	lg = log -p
+	del = branch -d
+	udel = branch -D
+	cob = checkout -b
+	ready = rebase -i origin/master
+	finish = "!f() { git co master; git merge $1; git push origin master; git del $1; }; f"  
+	standup = !git log --since yesterday --author `git config user.email` --date=short  --pretty=format:'%ad - %s'
+	weekly = !git log --since 1.week --author `git config user.email` --date=short  --pretty=format:'%ad - %s'
+	today = log --stat --since yesterday --graph --pretty=oneline --abbrev-commit --date=relative
+	score =  shortlog -sn
+	accept-ours = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --ours -- $files; git add -u $files; }; f"
+	accept-theirs = "!f() { files=\"$@\"; [ -z $files ] && files='.'; git checkout --theirs -- $files; git add -u $files; }; f"
+	ls = log --format=format:'%C(bold yellow)%h %C(reset) %s %C(green) [%an] %C(reset)' --decorate
+	ll = log --pretty=format:'%C(bold yellow)%h %C(reset) %s %C(green) [%an] %C(reset)' --decorate --numstat
+	lg1 = log --graph --format=format:'%C(bold yellow)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+	lg2 = log --graph --format=format:'%C(bold yellow)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(bold white)- %an%C(reset)' --abbrev-commit
+	lg = !git lg1
+	save = stash save
+   	pop = stash pop --index	
+	yolo = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\" && git push -f origin HEAD:master
+	onfire = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD) && git add -A && git commit -m 'building is on fire' && git push -f
+	who = blame
+	dgaf = "!git add -A && git commit -am \".configureawait(false); ¯\\_(ツ)_/¯💥:trollface:\""
+	
+	
+[help]
+    autocorrect = 1
