@@ -1,0 +1,1 @@
+source C:/Users/hyrma/.bash_profile
