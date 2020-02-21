@@ -36,7 +36,6 @@
 	fuckit = !git clean -dxf && git reset --hard
 	co = checkout
 	df = diff
-	lg = log -p
 	del = branch -d
 	udel = branch -D
 	cob = checkout -b
