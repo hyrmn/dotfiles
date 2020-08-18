@@ -54,7 +54,7 @@
 	lg = !git lg1
 	save = stash save
    	pop = stash pop --index	
-	yolo = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\" && git push -f origin HEAD:master
+	yolo = !git add -A && git commit -m \"$(curl -s whatthecommit.com/index.txt)\" && git push -f origin HEAD:main
 	onfire = !git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD) && git add -A && git commit -m 'building is on fire' && git push -f
 	who = blame
 	dgaf = "!git add -A && git commit -am \".configureawait(false); ¯\\_(ツ)_/¯💥:trollface:\""
